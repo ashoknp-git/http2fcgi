@@ -33,6 +33,8 @@ Usage of http2fcgi:
         the write timeout, zero means unlimited
 ```
 
+You can use either TCP or unix sockets for each of `-fcgi` and `-http`; any URL that `go` understands should work.
+
 ## Authors
 - Mohammed Al Ashaal: original http2fcgi version
 - Jeremy Howard: this fork
