@@ -9,8 +9,17 @@ To run, if `http2fcgi` is in your current directory, type:
 
 That will create a gateway that listens for HTTP on port 6065, and will forward as fastcgi to a unix socket called `fcgi.sock` in the current directory. See below for how to customize these.
 
-Help?
-=====
+## Download
+
+Latest releases available from:
+
+- [macOS x64](https://github.com/fastai/http2fcgi/releases/latest/download/http2fcgi-darwin-amd64.tgz)
+- [Linux x64](https://github.com/fastai/http2fcgi/releases/latest/download/http2fcgi-linux-amd64.tgz)
+- [Linux ARM64](https://github.com/fastai/http2fcgi/releases/latest/download/http2fcgi-linux-rm64.tgz)
+- [Windows x64](https://github.com/fastai/http2fcgi/releases/latest/download/http2fcgi-windows-amd64.tgz)
+
+## Help
+
 ```bash
 ➜  http2fcgi -h
 Usage of http2fcgi:
