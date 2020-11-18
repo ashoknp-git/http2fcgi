@@ -1,60 +1,34 @@
-HTTP2FCGI
-==========
+# http2fcgi
 > Quickly serve any `FastCGI` based application with no hassle.
 
-Quick Overview
-==============
-> `➜  http2fcgi --root /var/www/laravel-project/public --http :8000`
+This is a fork of [alash3al/http2fcgi](https://github.com/alash3al/http2fcgi) which removes everything except basic fastcgi transport functionality. It doesn't serve files or indexes, check file paths, look at extensions, etc.
+
+To run, if `http2fcgi` is in your current directory, type:
+
+`./http2fcgi`
+
+That will create a gateway that listens for HTTP on port 6065, and will forward as fastcgi to a unix socket called `fcgi.sock` in the current directory. See below for how to customize these.
 
 Help?
 =====
 ```bash
 ➜  http2fcgi -h
 Usage of http2fcgi:
-  -ext comma separated list
-        the fastcgi file extension(s) comma separated list (default "php")
   -fcgi string
-        the fcgi backend to connect to, you can pass more fcgi related params as query params (default "unix:///var/run/php/php7.0-fpm.sock")
+        the fcgi backend to connect to, you can pass more fcgi related params as query params (default "unix:./fcgi.sock")
   -http string
         the http address to listen on (default ":6065")
-  -index string comma separated list
-        the default index file (default "index.php,index.html")
-  -listing
-        whether to allow directory listing or not
-  -root string
-        the document root (default "./")
-  -router string
-        the router filename incase of any 404 error (default "index.php")
   -rtimeout int
         the read timeout, zero means unlimited
   -wtimeout int
         the write timeout, zero means unlimited
 ```
 
-What?
-=======
-> http2fcgi is a reverse proxy that will convert the standard `http` request to `fcgi` 
-request so it can served by i.e `php`, `python` ... etc.
+## Authors
+- Mohammed Al Ashaal: original http2fcgi version
+- Jeremy Howard: this fork
+- [Caddy](https://caddyserver.com) authors: fastcgi transport used in `http2fcgi`
 
-Why?
-====
-> I wanted a production ready simple and tiny solution to serve some of my `laravel` based projects.
+## License
 
-Download
-==========
-- Binary, go to the [releases page](https://github.com/alash3al/http2fcgi/releases).
-- Using `Docker` `➜ docker run --network=host -v /var/www/site/public:/var/www/site/public -v /var/run/php/php7.0-fpm.sock:/var/run/php/php7.0-fpm.sock alash3al/http2fcgi -root /var/www/site/public -http :8085`.
-
-- Using `Go` `➜ go get github.com/alash3al/http2fcgi`.
-
-Advanced
-=========
-> From your app you can ask `http2fcgi` to send a file with any size directly to the browser without any hassle in your app logic, just send a header `X-SendFile: /full/path/to/file` then let `http2fcgi` deal with it. 
-
-Author
-========
-Mohammed Al Ashaal
-
-License
-========
 MIT License
