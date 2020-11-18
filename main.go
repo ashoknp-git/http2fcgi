@@ -16,7 +16,7 @@ import (
 
 var (
 	FlagHTTPAddr     = flag.String("http", ":6065", "the http address to listen on")
-	FlagFCGIBackend  = flag.String("fcgi", "unix:///var/run/php/php7.0-fpm.sock", "the fcgi backend to connect to, you can pass more fcgi related params as query params")
+	FlagFCGIBackend  = flag.String("fcgi", "fcgi.sock", "fcgi backend to connect to")
 	FlagReadTimeout  = flag.Int("rtimeout", 0, "the read timeout, zero means unlimited")
 	FlagWriteTimeout = flag.Int("wtimeout", 0, "the write timeout, zero means unlimited")
 )
@@ -53,9 +53,8 @@ func Serve(res http.ResponseWriter, req *http.Request) {
 		}
 	}()
 
-	scriptname := req.URL.Path
-	pathInfo := req.URL.Path
-	fullfilename := "/" + pathInfo
+	//fullfilename := req.URL.Path
+	fullfilename := "/" + req.URL.Path
 	host, port, _ := net.SplitHostPort(req.RemoteAddr)
 	params := map[string]string{
 		"SERVER_SOFTWARE":    "http2fcgi",
@@ -69,11 +68,11 @@ func Serve(res http.ResponseWriter, req *http.Request) {
 		"REMOTE_PORT":        port,
 		"SCRIPT_FILENAME":    fullfilename,
 		"PATH_TRANSLATED":    fullfilename,
-		"SCRIPT_NAME":        scriptname,
+		"SCRIPT_NAME":        req.URL.Path,
 		"REQUEST_URI":        req.URL.RequestURI(),
 		"AUTH_DIGEST":        req.Header.Get("Authorization"),
-		"PATH_INFO":          pathInfo,
-		"ORIG_PATH_INFO":     pathInfo,
+		"PATH_INFO":          req.URL.Path,
+		"ORIG_PATH_INFO":     req.URL.Path,
 		"HTTP_HOST":          req.Host,
 	}
 
