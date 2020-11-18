@@ -1,3 +1,4 @@
+http2fcgi
 build/
 *.tgz
 *.sock
