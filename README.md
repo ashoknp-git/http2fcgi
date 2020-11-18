@@ -24,7 +24,7 @@ Latest releases available from:
 ➜  http2fcgi -h
 Usage of http2fcgi:
   -fcgi string
-        the fcgi backend to connect to, you can pass more fcgi related params as query params (default "unix:./fcgi.sock")
+        the fcgi backend to connect to (default "unix:./fcgi.sock")
   -http string
         the http address to listen on (default ":6065")
   -rtimeout int
