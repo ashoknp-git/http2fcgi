@@ -53,8 +53,7 @@ func Serve(res http.ResponseWriter, req *http.Request) {
 		}
 	}()
 
-	//fullfilename := req.URL.Path
-	fullfilename := "/" + req.URL.Path
+	fullfilename := req.URL.Path
 	host, port, _ := net.SplitHostPort(req.RemoteAddr)
 	params := map[string]string{
 		"SERVER_SOFTWARE":    "http2fcgi",

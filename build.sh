@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -ex
 
-platforms=("windows/amd64" "darwin/amd64" "linux/amd64")
+platforms=("darwin/arm64" "windows/amd64" "darwin/amd64" "linux/amd64" "linux/arm64")
 
 mkdir -p build
 for platform in "${platforms[@]}"; do
